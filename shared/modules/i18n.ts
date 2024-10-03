@@ -177,7 +177,7 @@ function missingKeyError(
     onError?.(error);
     log.error(error);
 
-    if (process.env.IN_TEST) {
+    if (process.env.IN_TEST || process.env.ENABLE_SETTINGS_PAGE_DEV_OPTIONS) {
       throw error;
     }
   }
@@ -186,9 +186,9 @@ function missingKeyError(
     return;
   }
 
+  console.log('7');
   warned[localeCode] = warned[localeCode] ?? {};
   warned[localeCode][key] = true;
-
   log.warn(
     `Translator - Unable to find value of key "${key}" for locale "${localeCode}"`,
   );

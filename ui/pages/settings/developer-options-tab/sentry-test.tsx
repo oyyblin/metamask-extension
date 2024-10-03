@@ -1,8 +1,9 @@
 import React, { useState, useCallback, ReactElement } from 'react';
-import { ButtonVariant } from '@metamask/snaps-sdk';
+import { useDispatch } from 'react-redux';
 import {
   Box,
   Button,
+  ButtonVariant,
   Icon,
   IconName,
   IconSize,
@@ -16,6 +17,13 @@ import {
   JustifyContent,
 } from '../../../helpers/constants/design-system';
 import { trace, TraceName } from '../../../../shared/lib/trace';
+import { ButtonSize } from '../../../components/component-library/button/button.types';
+
+import {
+  forceUpdateMetamaskState,
+  setCurrentLocale,
+} from '../../../store/actions';
+import { fetchLocale } from '../../../../shared/modules/i18n';
 
 export function SentryTest() {
   return (
@@ -27,6 +35,7 @@ export function SentryTest() {
         <GenerateUIError />
         <GenerateBackgroundError />
         <GenerateTrace />
+        <GeneratePageCrash />
       </div>
     </>
   );
@@ -115,6 +124,36 @@ function GenerateTrace() {
   );
 }
 
+function GeneratePageCrash() {
+  const dispatch = useDispatch();
+  const handleClick = async () => {
+    // TODO: Dynamic en
+    const localeMessages = await fetchLocale('en');
+    await dispatch(
+      setCurrentLocale('en', {
+        ...localeMessages,
+        // "@ts-expect-error"
+        developerOptions: undefined, // remove a language string in this page
+      }),
+    );
+    await forceUpdateMetamaskState(dispatch);
+  };
+
+  return (
+    <TestButton
+      name="Generate A Page Crash"
+      description={
+        <span>
+          Trigger the crash on extension to send user feedback to sentry. You
+          can click "Try again" to reload extension
+        </span>
+      }
+      onClick={handleClick}
+      expectError
+    />
+  );
+}
+
 function TestButton({
   name,
   description,
@@ -155,7 +194,11 @@ function TestButton({
         <div className="settings-page__content-description">{description}</div>
       </div>
       <div className="settings-page__content-item-col">
-        <Button variant={ButtonVariant.Primary} onClick={handleClick}>
+        <Button
+          variant={ButtonVariant.Primary}
+          onClick={handleClick}
+          size={ButtonSize.Sm}
+        >
           {name}
         </Button>
       </div>
