@@ -146,7 +146,7 @@ import {
   setTheme,
   showOnboardingHeader,
 } from './isolated';
-import { updateNewPrivacyPolicyToastDate } from './toasts';
+import { renderToasts, updateNewPrivacyPolicyToastDate } from './toasts';
 
 export default class Routes extends Component {
   static propTypes = {
@@ -610,7 +610,7 @@ export default class Routes extends Component {
           {this.renderRoutes()}
         </Box>
         {isUnlocked ? <Alerts history={this.props.history} /> : null}
-        {/* TODO: put back {this.renderToasts()} */}
+        {renderToasts(this.props, this.context)}
       </div>
     );
   }
