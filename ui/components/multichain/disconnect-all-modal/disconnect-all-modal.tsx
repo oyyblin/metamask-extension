@@ -42,7 +42,7 @@ export const DisconnectAllModal = ({
         </ModalHeader>
         <ModalBody>
           {process.env.CHAIN_PERMISSIONS ? (
-            <Text>{t('disconnectAllDescription', [hostname])}</Text>
+            <Text>{t('disconnectAllDescriptionText')}</Text>
           ) : (
             <Text>{t('disconnectAllText', [t(type), hostname])}</Text>
           )}

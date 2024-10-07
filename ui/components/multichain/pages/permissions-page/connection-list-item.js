@@ -115,10 +115,9 @@ export const ConnectionListItem = ({ connection, onClick }) => {
                 as="span"
                 width={BlockSize.Max}
                 color={TextColor.textAlternative}
-                variant={TextVariant.bodyMd}
+                variant={TextVariant.bodySm}
               >
-                {connection.addresses.length} {t('accountsSmallCase')}&nbsp;
-                •&nbsp;
+                {connection.addresses.length} {t('accountsSmallCase')} •&nbsp;
                 {connectedNetworks.length} {t('networksSmallCase')}
               </Text>
             ) : (
