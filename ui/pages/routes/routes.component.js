@@ -150,7 +150,7 @@ import {
   setTheme,
   showOnboardingHeader,
 } from './isolated';
-import { ToastMaster, updateNewPrivacyPolicyToastDate } from './toast-master';
+import { ToastMaster } from './toast-master';
 
 export default class Routes extends Component {
   static propTypes = {
@@ -217,12 +217,8 @@ export default class Routes extends Component {
     totalUnapprovedConfirmationCount: PropTypes.number.isRequired,
     currentExtensionPopupId: PropTypes.number,
     useRequestQueue: PropTypes.bool,
-    showPrivacyPolicyToast: PropTypes.bool.isRequired,
-    newPrivacyPolicyToastShownDate: PropTypes.number,
     setSurveyLinkLastClickedOrClosed: PropTypes.func.isRequired,
-    setNewPrivacyPolicyToastShownDate: PropTypes.func.isRequired,
     clearEditedNetwork: PropTypes.func.isRequired,
-    setNewPrivacyPolicyToastClickedOrClosed: PropTypes.func.isRequired,
     ///: BEGIN:ONLY_INCLUDE_IF(keyring-snaps)
     isShowKeyringSnapRemovalResultModal: PropTypes.bool.isRequired,
     hideShowKeyringSnapRemovalResultModal: PropTypes.func.isRequired,
@@ -234,10 +230,6 @@ export default class Routes extends Component {
     t: PropTypes.func,
     metricsEvent: PropTypes.func,
   };
-
-  componentDidMount() {
-    updateNewPrivacyPolicyToastDate(this.props);
-  }
 
   componentDidUpdate(prevProps) {
     const {

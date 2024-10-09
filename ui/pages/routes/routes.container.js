@@ -21,8 +21,6 @@ import {
   getNeverShowSwitchedNetworkMessage,
   getNetworkToAutomaticallySwitchTo,
   getNumberOfAllUnapprovedTransactionsAndMessages,
-  getNewPrivacyPolicyToastShownDate,
-  getShowPrivacyPolicyToast,
   getUseRequestQueue,
   getUseNftDetection,
   getNftDetectionEnablementToast,
@@ -41,8 +39,6 @@ import {
   hideDeprecatedNetworkModal,
   addPermittedAccount,
   setSurveyLinkLastClickedOrClosed,
-  setNewPrivacyPolicyToastClickedOrClosed,
-  setNewPrivacyPolicyToastShownDate,
   automaticallySwitchNetwork,
   clearSwitchedNetworkDetails,
   neverShowSwitchedNetworkMessage,
@@ -130,8 +126,6 @@ function mapStateToProps(state) {
     neverShowSwitchedNetworkMessage: getNeverShowSwitchedNetworkMessage(state),
     currentExtensionPopupId: state.metamask.currentExtensionPopupId,
     useRequestQueue: getUseRequestQueue(state),
-    newPrivacyPolicyToastShownDate: getNewPrivacyPolicyToastShownDate(state),
-    showPrivacyPolicyToast: getShowPrivacyPolicyToast(state),
     ///: BEGIN:ONLY_INCLUDE_IF(keyring-snaps)
     isShowKeyringSnapRemovalResultModal:
       state.appState.showKeyringRemovalSnapModal,
@@ -163,10 +157,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(automaticallySwitchNetwork(networkId, selectedTabOrigin)),
     setSurveyLinkLastClickedOrClosed: (time) =>
       dispatch(setSurveyLinkLastClickedOrClosed(time)),
-    setNewPrivacyPolicyToastClickedOrClosed: () =>
-      dispatch(setNewPrivacyPolicyToastClickedOrClosed()),
-    setNewPrivacyPolicyToastShownDate: (date) =>
-      dispatch(setNewPrivacyPolicyToastShownDate(date)),
     clearEditedNetwork: () => dispatch(setEditedNetwork()),
     ///: BEGIN:ONLY_INCLUDE_IF(keyring-snaps)
     hideShowKeyringSnapRemovalResultModal: () =>
