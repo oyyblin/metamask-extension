@@ -57,11 +57,9 @@ async function createTransactionAndAssertDetails(
 
   await testDapp.open({ contractAddress, url: DAPP_URL });
 
-  await driver.delay(1024 ** 2);
-  // 0x581c3C1A2A4EBDE2A0Df29B5cf4c116E42945947
-  // 0x8e212420caE9c3D6ba75B247f63998cf1B178B63
+  await testDapp.clickERC20WatchAssetButton();
 
-  // await testDapp.clickERC1155RevokeSetApprovalForAllButton();
+  await driver.delay(1024 ** 2);
 
   // await driver.switchToWindowWithTitle(WINDOW_TITLES.Dialog);
 
