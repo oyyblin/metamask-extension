@@ -1276,7 +1276,7 @@ function logBrowserError(ignoredConsoleErrors, errorMessage) {
 
   if (errorMessage.startsWith('Warning:')) {
     console.error("-----We will ignore this 'Warning'-----");
-    ignored = true;
+    // ignored = true;
   } else if (isInIgnoreList(errorMessage, ignoredConsoleErrors)) {
     console.error('---This error is on the ignore list----');
     ignored = true;
