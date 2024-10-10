@@ -477,7 +477,7 @@ export default function PrivacySettings() {
                   <TextField
                     value={ipfsURL}
                     style={{ width: '100%' }}
-                    inputProps={{ 'data-testid': 'ipfs-input' }}
+                    testId="ipfs-input"
                     onChange={(e) => {
                       handleIPFSChange(e.target.value);
                     }}
